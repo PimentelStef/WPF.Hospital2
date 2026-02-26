@@ -16,6 +16,10 @@
             <RowDefinition Height="80"></RowDefinition>
             <RowDefinition Height="35"></RowDefinition>
             <RowDefinition Height="80"></RowDefinition>
+            <RowDefinition Height="35"></RowDefinition>
+            <RowDefinition Height="80"></RowDefinition>
+            <RowDefinition Height="35"></RowDefinition>
+            <RowDefinition Height="80"></RowDefinition>
         </Grid.RowDefinitions>
         <Grid>
             <Grid.ColumnDefinitions>
@@ -35,6 +39,12 @@
             </MenuItem>
             <MenuItem Header="Doctors">
                 <MenuItem Header="Add Doctor"></MenuItem>
+            </MenuItem>
+            <MenuItem Header="Prescription">
+                <MenuItem Header="Add Prescription"></MenuItem>
+            </MenuItem>
+            <MenuItem Header="Medical History">
+                <MenuItem Header="Add Medical History"></MenuItem>
             </MenuItem>
         </Menu>
         <Label Grid.Row="2" Margin="2" Content="Patient Maintenance" FontSize="16" FontWeight="Bold"></Label>
@@ -75,6 +85,32 @@
             <Button x:Name="btnAddDoctor" Content="Add Doctor"></Button>
             <Button Content="Delete Doctor"></Button>
             <Button x:Name="btnAllDoctor" Content="All Doctors"></Button>
+        </StackPanel>
+        <Label Grid.Row="8" Margin="2" Content="Medical History Maintenance" FontSize="16" FontWeight="Bold"></Label>
+        <StackPanel Margin="5" Orientation="Horizontal" Grid.Row="9">
+            <StackPanel.Resources>
+                <Style TargetType="Button">
+                    <Setter Property="Margin" Value="5"></Setter>
+                    <Setter Property="Padding" Value="10"></Setter>
+                    <Setter Property="BorderThickness"  Value="0"></Setter>
+                </Style>
+            </StackPanel.Resources>
+            <Button x:Name="btnAddMedicalHistory" Content="Add Medical Maintenance"></Button>
+            <Button Content="Delete Medical History"></Button>
+            <Button x:Name="btnAllMedicalHistory" Content="All Medical History"></Button>
+        </StackPanel>
+        <Label Grid.Row="10" Margin="2" Content="Prescription Maintenance" FontSize="16" FontWeight="Bold"></Label>
+        <StackPanel Margin="5" Orientation="Horizontal" Grid.Row="11">
+            <StackPanel.Resources>
+                <Style TargetType="Button">
+                    <Setter Property="Margin" Value="5"></Setter>
+                    <Setter Property="Padding" Value="10"></Setter>
+                    <Setter Property="BorderThickness"  Value="0"></Setter>
+                </Style>
+            </StackPanel.Resources>
+            <Button x:Name="btnAddPrescription" Content="Add Prescription"></Button>
+            <Button Content="Delete Prescription"></Button>
+            <Button x:Name="btnAllPrescription" Content="All Prescription"></Button>
         </StackPanel>
     </Grid>
 </Window>

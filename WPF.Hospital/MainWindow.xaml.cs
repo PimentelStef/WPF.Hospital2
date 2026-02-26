@@ -8,6 +8,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WPF.Hospital.DTO;
 using WPF.Hospital.Service;
 
 namespace WPF.Hospital
@@ -41,6 +42,12 @@ namespace WPF.Hospital
         {
             DeletePatient deletePatient = new DeletePatient(_patientService);
             deletePatient.ShowDialog();
+        }
+
+        private void btnManageHistory_Click(object sender, RoutedEventArgs e)
+        {
+            History history = new History();
+            history.ShowDialog();
         }
     }
 }

@@ -53,6 +53,37 @@ namespace WPF.Hospital.Service
                     Birthdate = patient.Birthdate,
                 });
         }
+        public (bool ok, string Message) Create(Patient patient)
+        {
+            if (string.IsNullOrEmpty(patient.FirstName))
+            {
+                return (false, "First name is required.");
+            }
+            if (string.IsNullOrEmpty(patient.LastName))
+            {
+                return (false, "Last name is required.");
+            }
+            if (patient.Age <= 0)
+            {
+                return (false, "Age must be greater than 0.");
+            }
+            if (patient.Birthdate > DateTime.Now)
+            {
+                return (false, "Birthdate cannot be in the future.");
+            }
+
+            IEnumerable<Model.Patient> existingPatients = _patientRepository.GetAll();
+            if (patients.Any(m => m.FirstName.Contains(patient.FirstName) && m.Lastname.Contains(patient.LastName)))
+                return (false, "Patient with the same name already exists.");
+
+            _patientRepository.Add(new Model.Patient
+                {
+                FirstName = patient.FirstName,
+                LastName = patient.LastName,
+                Age = patient.Age,
+                Birthdate = patient.Birthdate
+            });
+        }
         public void Add(Patient patient)
         {
             _patientRepository.Add(new Model.Patient
