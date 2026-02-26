@@ -1,0 +1,24 @@
+﻿<Window x:Class="WPF.Hospital.MedicalHistorySection"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WPF.Hospital"
+        mc:Ignorable="d"
+        Title="MedicalHistorySection" Height="450" Width="800">
+    <Grid>
+        <GroupBox Header="Medical History">
+            <StackPanel>
+                <ComboBox x:Name="cmbDoctors"
+                  ItemsSource="{Binding Doctors}"
+                  DisplayMemberPath="FullName"/>
+
+                <TextBox x:Name="txtProcedure"
+                 Text="{Binding ProcedureText}"/>
+
+                <Button Content="Add History"
+                Click="btnAddHistory_Click"/>
+            </StackPanel>
+        </GroupBox>
+    </Grid>
+</Window>

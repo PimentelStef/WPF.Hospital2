@@ -9,11 +9,12 @@ namespace WPF.Hospital.DTO
     public class Prescription
     {
         public int Id { get; set; }
-
-        public History History { get; set; }
-        public Medicine Medicine { get; set; }
+        public int HistoryId { get; set; }
+        public int MedicineId { get; set; }
 
         public int Quantity { get; set; }
         public string Frequency { get; set; }
+
+        public string MedicineName { get; set; }
     }
 }
