@@ -30,26 +30,24 @@ namespace WPF.Hospital
 
         private void Delete_Click(object sender, RoutedEventArgs e)
         {
-            if (!int.TryParse(txtDoctorId.Text, out int doctorId))
+            if (string.IsNullOrWhiteSpace(txtDoctorId.Text))
             {
-                MessageBox.Show("Invalid Doctor ID.");
+                MessageBox.Show("Doctor ID is required.");
                 return;
             }
 
-            bool deleted = _doctorService.Delete(doctorId);
+            int patientId;
 
-            if (deleted)
+            if (!int.TryParse(txtDoctorId.Text, out patientId))
             {
-                MessageBox.Show("Doctor deleted successfully!");
-                this.Close();
+                MessageBox.Show("Patient ID must be a number.");
+                return;
             }
-            else
-            {
-                MessageBox.Show("Doctor not found.",
-                                "Error",
-                                MessageBoxButton.OK,
-                                MessageBoxImage.Error);
-            }
+
+            _doctorService.Delete(patientId);
+
+            MessageBox.Show("Patient deleted successfully!");
+            this.Close();
         }
 
         private void Cancel_Click(object sender, RoutedEventArgs e)

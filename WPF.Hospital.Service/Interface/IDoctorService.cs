@@ -11,6 +11,6 @@ namespace WPF.Hospital.Service
     {
         IEnumerable<Doctor> GetAll();
         (bool ok, string Message) Create(Doctor doctor);
-        void Delete(int id);
+        (bool ok, string Message) Delete(int id);
     }
 }

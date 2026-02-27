@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using WPF.Hospital.Service;
+using WPF.Hospital.ViewModel;
 
 namespace WPF.Hospital
 {
@@ -29,12 +30,13 @@ namespace WPF.Hospital
 
             DataContext = new
             {
-                Histories = _historyService.GetByPatientId(SelectedPatientId)
+                Histories = _historyService.GetByPatientId(0)
                     .Select(h => new HistoryViewModel()
                     {
                         Id = h.Id,
                         Procedure = h.Procedure
                     })
+                    .ToList()
             };
         }
     }

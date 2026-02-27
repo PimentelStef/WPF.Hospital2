@@ -56,7 +56,7 @@ namespace WPF.Hospital.Service
             return (true, "Doctor added");
         }
 
-        public void Delete(int id)
+        public (bool ok, string Message) Delete(int id)
         {
             var used = _historyRepository.GetAll()
                 .Any(h => h.DoctorId == id);
@@ -66,6 +66,8 @@ namespace WPF.Hospital.Service
 
             _doctorRepository.Delete(id);
             _doctorRepository.Save();
+
+            return (true, "Doctor deleted");
         }
     }
 }

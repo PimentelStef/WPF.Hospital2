@@ -30,11 +30,10 @@ namespace WPF.Hospital
 
             DataContext = new
             {
-                Prescriptions = _prescriptionService.GetByHistoryId(SelectedHistoryId)
+                Prescriptions = _prescriptionService.GetByHistoryId(0)
                     .Select(p => new PrescriptionViewModel()
                     {
                         Id = p.Id,
-                        Quantity = p.Quantity.ToString(),
                         Frequency = p.Frequency
                     })
             };

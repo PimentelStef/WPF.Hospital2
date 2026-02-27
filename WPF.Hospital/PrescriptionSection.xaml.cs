@@ -19,11 +19,11 @@ namespace WPF.Hospital
     /// <summary>
     /// Interaction logic for PrescriptionSection.xaml
     /// </summary>
-    public partial class Prescription : Window
+    public partial class PrescriptionSection : Window
     {
         private readonly IPrescriptionService _prescriptionService;
 
-        public Prescription(IPrescriptionService prescriptionService)
+        public PrescriptionSection(IPrescriptionService prescriptionService)
         {
             InitializeComponent();
             _prescriptionService = prescriptionService;
@@ -37,9 +37,9 @@ namespace WPF.Hospital
 
             var result = _prescriptionService.Create(new DTO.Prescription()
             {
-                HistoryId = vm.HistoryId,
-                MedicineId = vm.MedicineId,
-                Quantity = Convert.ToInt32(vm.Quantity),
+                HistoryId = vm.Id,
+                MedicineId = vm.Id,
+                Quantity = Convert.ToInt32(vm.Dosage),
                 Frequency = vm.Frequency
             });
 

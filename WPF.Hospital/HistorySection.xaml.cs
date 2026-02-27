@@ -19,11 +19,11 @@ namespace WPF.Hospital
     /// <summary>
     /// Interaction logic for MedicalHistorySection.xaml
     /// </summary>
-    public partial class History : Window
+    public partial class HistorySection : Window
     {
         private readonly IHistoryService _historyService;
 
-        public History(IHistoryService historyService)
+        public HistorySection(IHistoryService historyService)
         {
             InitializeComponent();
             _historyService = historyService;
@@ -37,8 +37,8 @@ namespace WPF.Hospital
 
             var result = _historyService.Create(new DTO.History()
             {
-                PatientId = vm.PatientId,
-                DoctorId = vm.DoctorId,
+                PatientId = vm.Id,
+                DoctorId = vm.Id,
                 Procedure = vm.Procedure
             });
 

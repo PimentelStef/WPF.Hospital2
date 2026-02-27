@@ -31,8 +31,14 @@ namespace WPF.Hospital
 
                     services.AddScoped<IPatientRepository, PatientRepository>();
                     services.AddScoped<IHistoryRepository, HistoryRepository>();
-
+                    services.AddScoped<IDoctorRepository, DoctorRepository>();
+                    services.AddScoped<IMedicineRepository, MedicineRepository>();
+                    services.AddScoped<IPrescriptionRepository, PrescriptionRepository>();                   
                     services.AddScoped<IPatientService, PatientService>();
+                    services.AddScoped<IDoctorService, DoctorService>();
+                    services.AddScoped<IHistoryService, HistoryService>();
+                    services.AddScoped<IMedicineService, MedicineService>();
+                    services.AddScoped<IPrescriptionService, PrescriptionService>();
 
                     services.AddTransient<MainWindow>();
                 })

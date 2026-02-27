@@ -23,15 +23,15 @@ namespace WPF.Hospital
         private readonly IMedicineService _medicineService;
         private readonly IHistoryService _HistoryService;
         private readonly IPrescriptionService _prescriptionService;
-        public MainWindow(IPatientService patientService, IDoctorService doctorService, IMedicineService medicineService, IHistoryService medicalHistoryService, IPrescriptionService prescriptionService)
+        public MainWindow(IPatientService patientService, IDoctorService DoctorService, IMedicineService MedicineService, IHistoryService HistoryService, IPrescriptionService PrescriptionService)
         {
             InitializeComponent();
             this.WindowState = WindowState.Maximized;
             _patientService = patientService;
-            _doctorService = doctorService;
-            _medicineService = medicineService;
-            _HistoryService = medicalHistoryService;
-            _prescriptionService = prescriptionService;
+            _doctorService = DoctorService;
+            _medicineService = MedicineService;
+            _HistoryService = HistoryService;
+            _prescriptionService = PrescriptionService;
         }
 
         private void btnAddPatient_Click(object sender, RoutedEventArgs e)
@@ -54,13 +54,13 @@ namespace WPF.Hospital
 
         private void btnManageHistory_Click(object sender, RoutedEventArgs e)
         {
-            History history = new History();
+            HistorySection history = new HistorySection(_HistoryService);
             history.ShowDialog();
         }
 
         private void btnAddDoctor_Click(object sender, RoutedEventArgs e)
         {
-            AddDoctor addDoctor = new AddDoctor(_doctorService);
+            DoctorSection addDoctor = new DoctorSection(_doctorService);
             addDoctor.ShowDialog();
         }
 
@@ -92,7 +92,7 @@ namespace WPF.Hospital
         }
         private void btnAddHistory_Click(object sender, RoutedEventArgs e)
         {
-            AddMedicalHistory history = new AddMedicalHistory(_HistoryService);
+            HistorySection history = new HistorySection(_HistoryService);
             history.ShowDialog();
         }
         private void btnAllHistory_Click(object sender, RoutedEventArgs e)
@@ -102,12 +102,12 @@ namespace WPF.Hospital
         }
         private void btnDeleteHistory_Click(object sender, RoutedEventArgs e)
         {
-            DeleteMedicalHistory history = new DeleteMedicalHistory(_HistoryService);
+            DeleteHistory history = new DeleteHistory(_HistoryService);
             history.ShowDialog();
         }
         private void btnAddPrescription_Click(object sender, RoutedEventArgs e)
         {
-            AddPrescription prescription = new AddPrescription(_prescriptionService);
+            PrescriptionSection prescription = new PrescriptionSection(_prescriptionService);
             prescription.ShowDialog();
         }
         private void btnAllPrescriptions_Click(object sender, RoutedEventArgs e)

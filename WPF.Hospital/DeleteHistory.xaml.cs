@@ -30,20 +30,29 @@ namespace WPF.Hospital
 
         private void Delete_Click(object sender, RoutedEventArgs e)
         {
-            if (!int.TryParse(txtHistoryId.Text, out int id))
+            if (string.IsNullOrWhiteSpace(txtHistoryId.Text))
             {
-                MessageBox.Show("Invalid History ID.");
+                MessageBox.Show("History ID is required.");
                 return;
             }
 
-            bool deleted = _historyService.Delete(id);
+            int historyId;
 
-            MessageBox.Show(deleted
-                ? "History deleted successfully!"
-                : "History not found.");
+            if (!int.TryParse(txtHistoryId.Text, out historyId))
+            {
+                MessageBox.Show("History ID must be a number.");
+                return;
+            }
 
-            if (deleted)
-                this.Close();
+            _historyService.Delete(historyId);
+
+            MessageBox.Show("History deleted successfully!");
+            this.Close();
+        }
+
+        private void Cancel_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }

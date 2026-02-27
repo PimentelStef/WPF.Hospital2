@@ -19,11 +19,11 @@ namespace WPF.Hospital
     /// <summary>
     /// Interaction logic for DoctorSection.xaml
     /// </summary>
-    public partial class Doctor : Window
+    public partial class DoctorSection : Window
     {
         private readonly IDoctorService _doctorService;
 
-        public Doctor(IDoctorService doctorService)
+        public DoctorSection(IDoctorService doctorService)
         {
             InitializeComponent();
             _doctorService = doctorService;
