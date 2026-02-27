@@ -43,14 +43,5 @@ namespace WPF.Hospital
 
             MessageBox.Show(result.Message);
         }
-
-        private void btnDeleteDoctor_Click(object sender, RoutedEventArgs e)
-        {
-            var vm = (DoctorViewModel)DataContext;
-
-            _doctorService.Delete(vm.SelectedDoctorId);
-
-            MessageBox.Show("Doctor deleted!");
-        }
     }
 }

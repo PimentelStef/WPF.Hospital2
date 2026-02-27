@@ -6,52 +6,56 @@ using System.Threading.Tasks;
 using WPF.Hospital.DTO;
 using WPF.Hospital.Repository;
 using WPF.Hospital.Service;
-public class MedicineService : IMedicineService
+
+namespace WPF.Hospital.Service
 {
-    private readonly IMedicineRepository _medicineRepository;
-
-    public MedicineService(IMedicineRepository medicineRepository)
+    public class MedicineService : IMedicineService
     {
-        _medicineRepository = medicineRepository;
-    }
+        private readonly IMedicineRepository _medicineRepository;
 
-    public Medicine Get(int id)
-    {
-        var medicine = _medicineRepository.Get(id);
-
-        return new Medicine
+        public MedicineService(IMedicineRepository medicineRepository)
         {
-            Id = medicine.Id,
-            Name = medicine.Name,
-            Brand = medicine.Brand
-        };
-    }
+            _medicineRepository = medicineRepository;
+        }
 
-    public IEnumerable<Medicine> GetAll()
-    {
-        return _medicineRepository.GetAll()
-            .Select(m => new Medicine
+        public Medicine Get(int id)
+        {
+            var medicine = _medicineRepository.Get(id);
+
+            return new Medicine
             {
-                Id = m.Id,
-                Name = m.Name,
-                Brand = m.Brand
-            });
-    }
+                Id = medicine.Id,
+                Name = medicine.Name,
+                Brand = medicine.Brand
+            };
+        }
 
-    public void Add(Medicine medicine)
-    {
-        _medicineRepository.Add(new Model.Medicine
+        public IEnumerable<Medicine> GetAll()
         {
-            Name = medicine.Name,
-            Brand = medicine.Brand
-        });
+            return _medicineRepository.GetAll()
+                .Select(m => new Medicine
+                {
+                    Id = m.Id,
+                    Name = m.Name,
+                    Brand = m.Brand
+                });
+        }
 
-        _medicineRepository.Save();
-    }
+        public void Add(Medicine medicine)
+        {
+            _medicineRepository.Add(new Model.Medicine
+            {
+                Name = medicine.Name,
+                Brand = medicine.Brand
+            });
 
-    public void Delete(int id)
-    {
-        _medicineRepository.Delete(id);
-        _medicineRepository.Save();
+            _medicineRepository.Save();
+        }
+
+        public void Delete(int id)
+        {
+            _medicineRepository.Delete(id);
+            _medicineRepository.Save();
+        }
     }
 }

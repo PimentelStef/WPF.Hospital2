@@ -72,8 +72,9 @@ namespace WPF.Hospital.Service
                 return (false, "Birthdate cannot be in the future.");
             }
 
-            IEnumerable<Model.Patient> existingPatients = _patientRepository.GetAll();
-            if (patients.Any(m => m.FirstName.Contains(patient.FirstName) && m.Lastname.Contains(patient.LastName)))
+            IEnumerable<Model.Patient> patients = _patientRepository.GetAll();
+
+            if (patients.Any(m => m.FirstName.Contains(patient.FirstName) && m.LastName.Contains(patient.LastName)))
                 return (false, "Patient with the same name already exists.");
 
             _patientRepository.Add(new Model.Patient
@@ -83,7 +84,11 @@ namespace WPF.Hospital.Service
                 Age = patient.Age,
                 Birthdate = patient.Birthdate
             });
+
+            return (true, "Patient created successfully.");
         }
+
+
         public void Add(Patient patient)
         {
             _patientRepository.Add(new Model.Patient

@@ -82,9 +82,9 @@
                     <Setter Property="BorderThickness"  Value="0"></Setter>
                 </Style>
             </StackPanel.Resources>
-            <Button x:Name="btnAddDoctor" Content="Add Doctor"></Button>
-            <Button Content="Delete Doctor"></Button>
-            <Button x:Name="btnAllDoctor" Content="All Doctors"></Button>
+            <Button x:Name="btnAddDoctor" Content="Add Doctor" Click="btnAddDoctor_Click"></Button>
+            <Button Content="Delete Doctor" Click="Button_Click_1"></Button>
+            <Button x:Name="btnAllDoctor" Content="All Doctors" Click="btnAllDoctor_Click"></Button>
         </StackPanel>
         <Label Grid.Row="8" Margin="2" Content="Medical History Maintenance" FontSize="16" FontWeight="Bold"></Label>
         <StackPanel Margin="5" Orientation="Horizontal" Grid.Row="9">

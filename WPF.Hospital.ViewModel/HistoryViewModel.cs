@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace WPF.Hospital.ViewModel
 {
-    internal class HistoryViewModel
+    public class HistoryViewModel
     {
         public int Id { get; set; }
         public string Procedure {  get; set; }

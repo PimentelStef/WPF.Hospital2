@@ -45,14 +45,5 @@ namespace WPF.Hospital
 
             MessageBox.Show(result.Message);
         }
-
-        private void btnDeletePrescription_Click(object sender, RoutedEventArgs e)
-        {
-            var vm = (PrescriptionViewModel)DataContext;
-
-            _prescriptionService.Delete(vm.SelectedPrescriptionId);
-
-            MessageBox.Show("Prescription deleted!");
-        }
     }
 }

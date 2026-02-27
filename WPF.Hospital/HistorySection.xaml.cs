@@ -12,17 +12,18 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using WPF.Hospital.Service;
+using WPF.Hospital.ViewModel;
 
 namespace WPF.Hospital
 {
     /// <summary>
     /// Interaction logic for MedicalHistorySection.xaml
     /// </summary>
-    public partial class MedicalHistory : Window
+    public partial class History : Window
     {
         private readonly IHistoryService _historyService;
 
-        public MedicalHistory(IHistoryService historyService)
+        public History(IHistoryService historyService)
         {
             InitializeComponent();
             _historyService = historyService;
@@ -42,15 +43,6 @@ namespace WPF.Hospital
             });
 
             MessageBox.Show(result.Message);
-        }
-
-        private void btnDeleteHistory_Click(object sender, RoutedEventArgs e)
-        {
-            var vm = (HistoryViewModel)DataContext;
-
-            _historyService.Delete(vm.SelectedHistoryId);
-
-            MessageBox.Show("History deleted!");
         }
     }
 }
