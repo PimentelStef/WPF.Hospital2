@@ -3,33 +3,55 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using WPF.Hospital.Model;
+using WPF.Hospital.DTO;
 using WPF.Hospital.Repository;
 using WPF.Hospital.Service;
 public class MedicineService : IMedicineService
 {
-    private readonly IMedicineRepository _repo;
+    private readonly IMedicineRepository _medicineRepository;
 
-    public MedicineService(IMedicineRepository repo)
+    public MedicineService(IMedicineRepository medicineRepository)
     {
-        _repo = repo;
+        _medicineRepository = medicineRepository;
     }
 
-    public Medicine Get(int id) => _repo.Get(id);
-
-    public IEnumerable<Medicine> GetAll() => _repo.GetAll();
-
-    public void Add(Medicine med)
+    public Medicine Get(int id)
     {
-        if (string.IsNullOrWhiteSpace(med.Name) ||
-            string.IsNullOrWhiteSpace(med.Brand))
-            throw new Exception("Medicine name and brand required");
+        var medicine = _medicineRepository.Get(id);
 
-        _repo.Add(med);
+        return new Medicine
+        {
+            Id = medicine.Id,
+            Name = medicine.Name,
+            Brand = medicine.Brand
+        };
+    }
+
+    public IEnumerable<Medicine> GetAll()
+    {
+        return _medicineRepository.GetAll()
+            .Select(m => new Medicine
+            {
+                Id = m.Id,
+                Name = m.Name,
+                Brand = m.Brand
+            });
+    }
+
+    public void Add(Medicine medicine)
+    {
+        _medicineRepository.Add(new Model.Medicine
+        {
+            Name = medicine.Name,
+            Brand = medicine.Brand
+        });
+
+        _medicineRepository.Save();
     }
 
     public void Delete(int id)
     {
-        _repo.Delete(id);
+        _medicineRepository.Delete(id);
+        _medicineRepository.Save();
     }
 }

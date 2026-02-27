@@ -9,20 +9,9 @@ namespace WPF.Hospital.ViewModel
 {
     public class DoctorViewModel
     {
-        public ObservableCollection<Doctor> Doctors { get; set; } = new();
-
-        public void AddDoctor()
-        {
-            var result = _service.Create(new Doctor
-            {
-                FirstName = FirstName,
-                LastName = LastName
-            });
-
-            MessageBox.Show(result.Message);
-
-            if (result.Ok)
-                LoadDoctors();
-        }
+        public int Id { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string Specialization { get; set; }
     }
 }
