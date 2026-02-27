@@ -7,22 +7,63 @@
         mc:Ignorable="d"
         Title="PrescriptionSection" Height="450" Width="800">
     <Grid>
-        <GroupBox Header="Prescription">
-            <StackPanel>
+        <GroupBox Header="Prescription"
+          FontWeight="Bold"
+          Padding="10"
+          Margin="10">
 
-                <ComboBox x:Name="cmbMedicine"
-                  ItemsSource="{Binding Medicines}"
+            <Grid Margin="5">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="120"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Text="Medicine:"
+                   VerticalAlignment="Center"/>
+
+                <ComboBox Grid.Column="1"
+                  x:Name="cmbMedicine"
+                  Height="30"
+                  Margin="5"
                   DisplayMemberPath="Name"/>
 
-                <TextBox x:Name="txtQuantity"
-                 Text="{Binding Quantity}"/>
+                <TextBlock Grid.Row="1"
+                   Text="Quantity:"
+                   VerticalAlignment="Center"/>
 
-                <TextBox x:Name="txtFrequency"
-                 Text="{Binding Frequency}"/>
+                <TextBox Grid.Row="1"
+                 Grid.Column="1"
+                 x:Name="txtQuantity"
+                 Height="30"
+                 Margin="5"/>
 
-                <Button Content="Add Prescription"
+                <TextBlock Grid.Row="2"
+                   Text="Frequency:"
+                   VerticalAlignment="Center"/>
+
+                <TextBox Grid.Row="2"
+                 Grid.Column="1"
+                 x:Name="txtFrequency"
+                 Height="30"
+                 Margin="5"/>
+
+                <Button Grid.Row="3"
+                Grid.ColumnSpan="2"
+                Content="Add Prescription"
+                Height="35"
+                Margin="5"
+                Background="#27AE60"
+                Foreground="White"
+                FontWeight="Bold"
                 Click="btnAddPrescription_Click"/>
-            </StackPanel>
+            </Grid>
         </GroupBox>
     </Grid>
 </Window>

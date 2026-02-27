@@ -11,17 +11,48 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using WPF.Hospital.Service;
+using WPF.Hospital.ViewModel;
 
 namespace WPF.Hospital
 {
     /// <summary>
     /// Interaction logic for PrescriptionSection.xaml
     /// </summary>
-    public partial class PrescriptionSection : Window
+    public partial class Prescription : Window
     {
-        public PrescriptionSection()
+        private readonly IPrescriptionService _prescriptionService;
+
+        public Prescription(IPrescriptionService prescriptionService)
         {
             InitializeComponent();
+            _prescriptionService = prescriptionService;
+
+            DataContext = new PrescriptionViewModel();
+        }
+
+        private void btnAddPrescription_Click(object sender, RoutedEventArgs e)
+        {
+            var vm = (PrescriptionViewModel)DataContext;
+
+            var result = _prescriptionService.Create(new DTO.Prescription()
+            {
+                HistoryId = vm.HistoryId,
+                MedicineId = vm.MedicineId,
+                Quantity = Convert.ToInt32(vm.Quantity),
+                Frequency = vm.Frequency
+            });
+
+            MessageBox.Show(result.Message);
+        }
+
+        private void btnDeletePrescription_Click(object sender, RoutedEventArgs e)
+        {
+            var vm = (PrescriptionViewModel)DataContext;
+
+            _prescriptionService.Delete(vm.SelectedPrescriptionId);
+
+            MessageBox.Show("Prescription deleted!");
         }
     }
 }

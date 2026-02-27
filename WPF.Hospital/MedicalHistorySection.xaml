@@ -7,18 +7,54 @@
         mc:Ignorable="d"
         Title="MedicalHistorySection" Height="450" Width="800">
     <Grid>
-        <GroupBox Header="Medical History">
-            <StackPanel>
-                <ComboBox x:Name="cmbDoctors"
-                  ItemsSource="{Binding Doctors}"
+        <GroupBox Header="Medical History"
+          FontWeight="Bold"
+          Padding="10"
+          Margin="10">
+
+            <Grid Margin="5">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="120"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Text="Doctor:"
+                   VerticalAlignment="Center"/>
+
+                <ComboBox Grid.Column="1"
+                  x:Name="cmbDoctors"
+                  Height="30"
+                  Margin="5"
                   DisplayMemberPath="FullName"/>
 
-                <TextBox x:Name="txtProcedure"
-                 Text="{Binding ProcedureText}"/>
+                <TextBlock Grid.Row="1"
+                   Text="Procedure:"
+                   VerticalAlignment="Top"/>
 
-                <Button Content="Add History"
+                <TextBox Grid.Row="1"
+                 Grid.Column="1"
+                 x:Name="txtProcedure"
+                 Height="60"
+                 AcceptsReturn="True"
+                 TextWrapping="Wrap"
+                 Margin="5"/>
+
+                <Button Grid.Row="2"
+                Grid.ColumnSpan="2"
+                Content="Add Medical History"
+                Height="35"
+                Margin="5"
+                Background="#3498DB"
+                Foreground="White"
+                FontWeight="Bold"
                 Click="btnAddHistory_Click"/>
-            </StackPanel>
+            </Grid>
         </GroupBox>
     </Grid>
 </Window>

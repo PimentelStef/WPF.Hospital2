@@ -11,17 +11,46 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using WPF.Hospital.Service;
+using WPF.Hospital.ViewModel;
 
 namespace WPF.Hospital
 {
     /// <summary>
     /// Interaction logic for DoctorSection.xaml
     /// </summary>
-    public partial class DoctorSection : Window
+    public partial class Doctor : Window
     {
-        public DoctorSection()
+        private readonly IDoctorService _doctorService;
+
+        public Doctor(IDoctorService doctorService)
         {
             InitializeComponent();
+            _doctorService = doctorService;
+
+            DataContext = new DoctorViewModel();
+        }
+
+        private void btnAddDoctor_Click(object sender, RoutedEventArgs e)
+        {
+            var vm = (DoctorViewModel)DataContext;
+
+            var result = _doctorService.Create(new DTO.Doctor()
+            {
+                FirstName = vm.FirstName,
+                LastName = vm.LastName
+            });
+
+            MessageBox.Show(result.Message);
+        }
+
+        private void btnDeleteDoctor_Click(object sender, RoutedEventArgs e)
+        {
+            var vm = (DoctorViewModel)DataContext;
+
+            _doctorService.Delete(vm.SelectedDoctorId);
+
+            MessageBox.Show("Doctor deleted!");
         }
     }
 }
