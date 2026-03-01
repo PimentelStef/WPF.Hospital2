@@ -69,9 +69,9 @@
                     <Setter Property="BorderThickness"  Value="0"></Setter>
                 </Style>
             </StackPanel.Resources>
-            <Button x:Name="btnAddMedicine" Content="Add Medicine"></Button>
-            <Button Content="Delete Medicine"></Button>
-            <Button x:Name="btnAllMedicine" Content="All Medicine"></Button>
+            <Button Content="Add Medicine" Click="btnAddMedicine_Click"/>
+            <Button Content="All Medicines" Click="btnAllMedicines_Click"/>
+            <Button Content="Delete Medicine" Click="btnDeleteMedicine_Click"/>
         </StackPanel>
         <Label Grid.Row="6" Margin="2" Content="Doctor Maintenance" FontSize="16" FontWeight="Bold"></Label>
         <StackPanel Margin="5" Orientation="Horizontal" Grid.Row="7">
@@ -95,9 +95,9 @@
                     <Setter Property="BorderThickness"  Value="0"></Setter>
                 </Style>
             </StackPanel.Resources>
-            <Button x:Name="btnAddMedicalHistory" Content="Add Medical Maintenance"></Button>
-            <Button Content="Delete Medical History"></Button>
-            <Button x:Name="btnAllMedicalHistory" Content="All Medical History"></Button>
+            <Button Content="Add History" Click="btnAddHistory_Click"/>
+            <Button Content="All History" Click="btnAllHistory_Click"/>
+            <Button Content="Delete History" Click="btnDeleteHistory_Click"/>
         </StackPanel>
         <Label Grid.Row="10" Margin="2" Content="Prescription Maintenance" FontSize="16" FontWeight="Bold"></Label>
         <StackPanel Margin="5" Orientation="Horizontal" Grid.Row="11">
@@ -108,9 +108,9 @@
                     <Setter Property="BorderThickness"  Value="0"></Setter>
                 </Style>
             </StackPanel.Resources>
-            <Button x:Name="btnAddPrescription" Content="Add Prescription"></Button>
-            <Button Content="Delete Prescription"></Button>
-            <Button x:Name="btnAllPrescription" Content="All Prescription"></Button>
+            <Button Content="Add Prescription" Click="btnAddPrescription_Click"/>
+            <Button Content="All Prescriptions" Click="btnAllPrescriptions_Click"/>
+            <Button Content="Delete Prescription" Click="btnDeletePrescription_Click"/>
         </StackPanel>
     </Grid>
 </Window>

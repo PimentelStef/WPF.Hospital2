@@ -40,13 +40,13 @@ namespace WPF.Hospital
 
             if (!int.TryParse(txtDoctorId.Text, out patientId))
             {
-                MessageBox.Show("Patient ID must be a number.");
+                MessageBox.Show("Doctor ID must be a number.");
                 return;
             }
 
             _doctorService.Delete(patientId);
 
-            MessageBox.Show("Patient deleted successfully!");
+            MessageBox.Show("Doctor deleted successfully!");
             this.Close();
         }
 

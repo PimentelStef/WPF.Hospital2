@@ -22,13 +22,26 @@ namespace WPF.Hospital
     public partial class HistorySection : Window
     {
         private readonly IHistoryService _historyService;
+        private readonly IDoctorService _doctorService;
+        private readonly IPatientService _patientService;
 
-        public HistorySection(IHistoryService historyService)
+        public HistorySection(IHistoryService historyService, IDoctorService doctorService, IPatientService patientService)
         {
             InitializeComponent();
-            _historyService = historyService;
 
-            DataContext = new HistoryViewModel();
+            _historyService = historyService;
+            _doctorService = doctorService;
+            _patientService = patientService;
+
+            DataContext = new HistoryViewModel
+            {
+                Doctors = _doctorService.GetAll()
+                    .Select(d => new DoctorViewModel
+                    {
+                        Id = d.Id,
+                        FullName = d.FirstName + " " + d.LastName
+                    })
+            };
         }
 
         private void btnAddHistory_Click(object sender, RoutedEventArgs e)
@@ -43,6 +56,9 @@ namespace WPF.Hospital
             });
 
             MessageBox.Show(result.Message);
+
+            if (result.ok)
+                this.DialogResult = true;
         }
     }
 }

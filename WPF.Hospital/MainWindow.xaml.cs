@@ -54,7 +54,7 @@ namespace WPF.Hospital
 
         private void btnManageHistory_Click(object sender, RoutedEventArgs e)
         {
-            HistorySection history = new HistorySection(_HistoryService);
+            HistorySection history = new HistorySection(_HistoryService, _doctorService, _patientService);
             history.ShowDialog();
         }
 
@@ -92,7 +92,7 @@ namespace WPF.Hospital
         }
         private void btnAddHistory_Click(object sender, RoutedEventArgs e)
         {
-            HistorySection history = new HistorySection(_HistoryService);
+            HistorySection history = new HistorySection(_HistoryService, _doctorService, _patientService);
             history.ShowDialog();
         }
         private void btnAllHistory_Click(object sender, RoutedEventArgs e)
@@ -107,7 +107,7 @@ namespace WPF.Hospital
         }
         private void btnAddPrescription_Click(object sender, RoutedEventArgs e)
         {
-            PrescriptionSection prescription = new PrescriptionSection(_prescriptionService);
+            PrescriptionSection prescription = new PrescriptionSection(_prescriptionService, _medicineService, _HistoryService);
             prescription.ShowDialog();
         }
         private void btnAllPrescriptions_Click(object sender, RoutedEventArgs e)

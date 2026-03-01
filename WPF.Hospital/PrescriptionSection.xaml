@@ -28,11 +28,15 @@
                 <TextBlock Text="Medicine:"
                    VerticalAlignment="Center"/>
 
-                <ComboBox Grid.Column="1"
-                  x:Name="cmbMedicine"
-                  Height="30"
-                  Margin="5"
-                  DisplayMemberPath="Name"/>
+                <ComboBox
+                    Width="600"
+                    Height="30"
+                    Margin="0,5"
+                    Grid.Column="1"
+                    ItemsSource="{Binding Medicines}"
+                    SelectedValue="{Binding SelectedMedicineId}"
+                    SelectedValuePath="Id"
+                    DisplayMemberPath="DisplayName"/>
 
                 <TextBlock Grid.Row="1"
                    Text="Quantity:"
@@ -42,7 +46,8 @@
                  Grid.Column="1"
                  x:Name="txtQuantity"
                  Height="30"
-                 Margin="5"/>
+                 Margin="5"
+                 Text="{Binding Quantity, UpdateSourceTrigger=PropertyChanged}"/>
 
                 <TextBlock Grid.Row="2"
                    Text="Frequency:"
@@ -52,7 +57,8 @@
                  Grid.Column="1"
                  x:Name="txtFrequency"
                  Height="30"
-                 Margin="5"/>
+                 Margin="5"
+                 Text="{Binding Frequency, UpdateSourceTrigger=PropertyChanged}"/>
 
                 <Button Grid.Row="3"
                 Grid.ColumnSpan="2"

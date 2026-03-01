@@ -35,13 +35,30 @@ namespace WPF.Hospital
         {
             var vm = (DoctorViewModel)DataContext;
 
+            if (string.IsNullOrWhiteSpace(vm.FullName))
+            {
+                MessageBox.Show("Doctor name required");
+                return;
+            }
+
+            var parts = vm.FullName.Trim().Split(' ');
+
+            if (parts.Length < 2)
+            {
+                MessageBox.Show("Enter full name (First and Last)");
+                return;
+            }
+
             var result = _doctorService.Create(new DTO.Doctor()
             {
-                FirstName = vm.FirstName,
-                LastName = vm.LastName
+                FirstName = parts[0],
+                LastName = parts[1]
             });
 
             MessageBox.Show(result.Message);
+
+            if (result.ok)
+                vm.FullName = ""; // clear after success
         }
     }
 }

@@ -34,8 +34,7 @@ namespace WPF.Hospital
                     .Select(d => new DoctorViewModel()
                     {
                         Id = d.Id,
-                        FirstName = d.FirstName,
-                        LastName = d.LastName
+                        FullName = d.FullName
                     })
             };
         }

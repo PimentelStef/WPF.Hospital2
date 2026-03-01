@@ -34,9 +34,11 @@ namespace WPF.Hospital.Service
 
         public (bool ok, string Message) Create(Doctor doctor)
         {
-            if (string.IsNullOrWhiteSpace(doctor.FirstName) ||
-                string.IsNullOrWhiteSpace(doctor.LastName))
-                return (false, "Doctor name required");
+            if (string.IsNullOrWhiteSpace(doctor.FirstName))
+                return (false, "First name required");
+
+            if (string.IsNullOrWhiteSpace(doctor.LastName))
+                return (false, "Last name required");
 
             var exists = _doctorRepository.GetAll()
                 .Any(d => d.FirstName == doctor.FirstName &&
@@ -53,7 +55,7 @@ namespace WPF.Hospital.Service
 
             _doctorRepository.Save();
 
-            return (true, "Doctor added");
+            return (true, "Doctor added successfully!");
         }
 
         public (bool ok, string Message) Delete(int id)

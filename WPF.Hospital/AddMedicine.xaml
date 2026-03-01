@@ -19,15 +19,10 @@
                      Height="30"
                      Margin="0,5,0,10"/>
 
-            <TextBlock Text="Description"/>
+            <TextBlock Text="Brand"/>
             <TextBox x:Name="txtBrand"
                      Height="30"
                      Margin="0,5,0,10"/>
-
-            <TextBlock Text="Price"/>
-            <TextBox x:Name="txtPrice"
-                     Height="30"
-                     Margin="0,5,0,15"/>
 
             <StackPanel Orientation="Horizontal"
                         HorizontalAlignment="Right">

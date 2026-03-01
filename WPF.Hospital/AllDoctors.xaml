@@ -16,12 +16,8 @@
                                     Binding="{Binding Id}"
                                     Width="50"/>
 
-                <DataGridTextColumn Header="First Name"
-                                    Binding="{Binding FirstName}"
-                                    Width="*"/>
-
-                <DataGridTextColumn Header="Last Name"
-                                    Binding="{Binding LastName}"
+                <DataGridTextColumn Header="Full Name"
+                                    Binding="{Binding FullName}"
                                     Width="*"/>
             </DataGrid.Columns>
 

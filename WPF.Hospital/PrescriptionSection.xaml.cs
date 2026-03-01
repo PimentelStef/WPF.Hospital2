@@ -22,13 +22,25 @@ namespace WPF.Hospital
     public partial class PrescriptionSection : Window
     {
         private readonly IPrescriptionService _prescriptionService;
+        private readonly IMedicineService _medicineService;
+        private readonly IHistoryService _historyService;
 
-        public PrescriptionSection(IPrescriptionService prescriptionService)
+        public PrescriptionSection(IPrescriptionService prescriptionService, IMedicineService medicineService, IHistoryService historyService)
         {
             InitializeComponent();
             _prescriptionService = prescriptionService;
-
-            DataContext = new PrescriptionViewModel();
+            _medicineService = medicineService;
+            _historyService = historyService;
+            DataContext = new PrescriptionViewModel
+            {
+                Medicines = _medicineService.GetAll()
+                .Select(m => new MedicineViewModel
+                {
+                Id = m.Id,
+                Name = m.Name,
+                Brand = m.Brand
+                })
+            };
         }
 
         private void btnAddPrescription_Click(object sender, RoutedEventArgs e)
@@ -38,12 +50,15 @@ namespace WPF.Hospital
             var result = _prescriptionService.Create(new DTO.Prescription()
             {
                 HistoryId = vm.Id,
-                MedicineId = vm.Id,
-                Quantity = Convert.ToInt32(vm.Dosage),
+                MedicineId = vm.SelectedMedicineId,
+                Quantity = Convert.ToInt32(vm.Quantity),
                 Frequency = vm.Frequency
             });
 
             MessageBox.Show(result.Message);
+
+            if (result.ok)
+                this.DialogResult = true;
         }
     }
 }

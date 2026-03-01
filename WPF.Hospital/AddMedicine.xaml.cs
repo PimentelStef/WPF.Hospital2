@@ -30,17 +30,10 @@ namespace WPF.Hospital
 
         private void Add_Click(object sender, RoutedEventArgs e)
         {
-            if (!decimal.TryParse(txtPrice.Text, out decimal price))
-            {
-                MessageBox.Show("Invalid price.");
-                return;
-            }
-
             _medicineService.Add(new DTO.Medicine()
             {
                 Name = txtName.Text,
-                Brand = txtBrand.Text,
-                Price = price
+                Brand = txtBrand.Text
             });
 
             MessageBox.Show("Medicine added successfully!");
