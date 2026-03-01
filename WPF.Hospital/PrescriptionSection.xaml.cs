@@ -23,14 +23,12 @@ namespace WPF.Hospital
     {
         private readonly IPrescriptionService _prescriptionService;
         private readonly IMedicineService _medicineService;
-        private readonly IHistoryService _historyService;
 
-        public PrescriptionSection(IPrescriptionService prescriptionService, IMedicineService medicineService, IHistoryService historyService)
+        public PrescriptionSection(IPrescriptionService prescriptionService, IMedicineService medicineService)
         {
             InitializeComponent();
             _prescriptionService = prescriptionService;
             _medicineService = medicineService;
-            _historyService = historyService;
             DataContext = new PrescriptionViewModel
             {
                 Medicines = _medicineService.GetAll()

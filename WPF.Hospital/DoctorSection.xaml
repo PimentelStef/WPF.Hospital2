@@ -27,7 +27,7 @@
                 <StackPanel>
                     <TextBlock Text="Doctor Name"/>
                     <TextBox 
-                        Width="250"
+                        Width="750"
                         Height="30"
                         Margin="0,5"
                         Text="{Binding FullName, UpdateSourceTrigger=PropertyChanged}" />

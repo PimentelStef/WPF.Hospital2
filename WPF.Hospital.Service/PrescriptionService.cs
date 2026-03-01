@@ -37,26 +37,38 @@ namespace WPF.Hospital.Service
         public (bool ok, string Message) Create(Prescription p)
         {
             if (p.HistoryId <= 0)
+            {
                 return (false, "History required");
+            }
 
             if (p.MedicineId <= 0)
+            {
                 return (false, "Medicine required");
+            }
 
             if (p.Quantity <= 0)
+            {
                 return (false, "Quantity must be greater than 0");
+            }
 
             if (string.IsNullOrWhiteSpace(p.Frequency))
+            {
                 return (false, "Frequency required");
+            }
 
             var exists = _medicineRepository.Get(p.MedicineId);
             if (exists == null)
+            {
                 return (false, "Medicine does not exist");
+            }
 
             var duplicate = _repo.GetByHistoryId(p.HistoryId)
                 .Any(x => x.MedicineId == p.MedicineId);
 
             if (duplicate)
+            {
                 return (false, "Duplicate medicine");
+            }
 
             _repo.Add(new Model.Prescription
             {

@@ -52,17 +52,25 @@ namespace WPF.Hospital.Service
         public (bool ok, string Message) Create(History history)
         {
             if (history.PatientId <= 0)
+            {
                 return (false, "Patient required");
+            }
 
             if (history.DoctorId <= 0)
+            {
                 return (false, "Doctor required");
+            }
 
             if (string.IsNullOrWhiteSpace(history.Procedure))
+            {
                 return (false, "Procedure required");
+            }
 
             var doctorExists = _doctorRepository.Get(history.DoctorId);
             if (doctorExists == null)
+            {
                 return (false, "Doctor does not exist");
+            }
 
             _historyRepository.Add(new Model.History
             {

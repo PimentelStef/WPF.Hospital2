@@ -23,15 +23,13 @@ namespace WPF.Hospital
     {
         private readonly IHistoryService _historyService;
         private readonly IDoctorService _doctorService;
-        private readonly IPatientService _patientService;
 
-        public HistorySection(IHistoryService historyService, IDoctorService doctorService, IPatientService patientService)
+        public HistorySection(IHistoryService historyService, IDoctorService doctorService)
         {
             InitializeComponent();
 
             _historyService = historyService;
             _doctorService = doctorService;
-            _patientService = patientService;
 
             DataContext = new HistoryViewModel
             {
@@ -50,7 +48,6 @@ namespace WPF.Hospital
 
             var result = _historyService.Create(new DTO.History()
             {
-                PatientId = vm.Id,
                 DoctorId = vm.Id,
                 Procedure = vm.Procedure
             });
